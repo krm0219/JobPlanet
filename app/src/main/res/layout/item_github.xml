@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="repository"
+            type="com.jobplanet.task.model.JobPlanetModel" />
+
+        <variable
+            name="theme"
+            type="com.jobplanet.task.model.ThemeModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_item_theme_cover"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:imageUrl="@{theme.coverImage}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/black" />
+
+            <TextView
+                android:id="@+id/text_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="24dp"
+                android:text="@{repository.name}"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_item_theme_cover"
+                tools:text="개발이\n적성이라면" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

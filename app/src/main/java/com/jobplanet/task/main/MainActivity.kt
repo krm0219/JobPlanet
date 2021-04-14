@@ -1,6 +1,7 @@
 package com.jobplanet.task.main
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -22,6 +23,14 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
 
+        viewModel.showErrorToast.observe(this, Observer {
+
+            it.getContentIfNotHandled()?.let {
+
+                Toast.makeText(this@MainActivity, R.string.msg_error, Toast.LENGTH_SHORT).show()
+            }
+        })
+
         setRecyclerView()
     }
 
@@ -37,26 +46,4 @@ class MainActivity : AppCompatActivity() {
             adapter.setData(it)
         })
     }
-
-
-    /*
-
-        // Toast Event
-        viewModel.showEmptyToast.observe(viewLifecycleOwner, Observer {
-
-            it.getContentIfNotHandled()?.let {
-
-                Toast.makeText(activity, R.string.msg_empty_keyword, Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        viewModel.showErrorToast.observe(viewLifecycleOwner, Observer {
-
-            it.getContentIfNotHandled()?.let {
-
-                Toast.makeText(activity, R.string.msg_error, Toast.LENGTH_SHORT).show()
-            }
-        })
-
-    * */
 }

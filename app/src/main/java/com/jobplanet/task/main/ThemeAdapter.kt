@@ -31,16 +31,16 @@ class ThemeAdapter : ListAdapter<ThemeModel, ThemeAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = getItem(position)
-        holder.bind(movie)
+        val theme = getItem(position)
+        holder.bind(theme)
     }
 
 
     inner class ViewHolder(private val binding: ItemThemeBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: ThemeModel) {
+        fun bind(theme: ThemeModel) {
 
-            binding.theme = movie
+            binding.theme = theme
             binding.executePendingBindings()
         }
     }

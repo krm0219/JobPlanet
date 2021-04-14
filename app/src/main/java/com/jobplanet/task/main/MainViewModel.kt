@@ -1,6 +1,5 @@
 package com.jobplanet.task.main
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,14 +19,6 @@ class MainViewModel : ViewModel() {
         get() = _progress
 
 
-    private val _hideKeyboard = MutableLiveData<Event<Boolean>>()
-    val hideKeyboard: MutableLiveData<Event<Boolean>>
-        get() = _hideKeyboard
-
-    private val _showEmptyToast = MutableLiveData<Event<Boolean>>()
-    val showEmptyToast: MutableLiveData<Event<Boolean>>
-        get() = _showEmptyToast
-
     private val _showErrorToast = MutableLiveData<Event<Boolean>>()
     val showErrorToast: MutableLiveData<Event<Boolean>>
         get() = _showErrorToast
@@ -35,8 +26,6 @@ class MainViewModel : ViewModel() {
     init {
 
         getData()
-
-        _progress.value = View.GONE
     }
 
 
@@ -47,11 +36,6 @@ class MainViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
-                for (i in it.items.indices) {
-
-                    Log.e("krm0219", "DATA ${it.items[i].cellType}")
-                }
-
                 _progress.value = View.GONE
                 _jobs.postValue(it.items)
             }, {
@@ -59,26 +43,5 @@ class MainViewModel : ViewModel() {
                 _progress.value = View.GONE
                 showErrorToast.value = Event(true)
             })
-    }
-
-
-    fun clickSearch() {
-
-        _progress.value = View.VISIBLE
-        _hideKeyboard.value = Event(true)
-
-//
-//        RetrofitService.client.getRepositories(_keyword.value!!)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//
-//                _progress.value = View.GONE
-//                _githubRepositories.postValue(it.items)
-//            }, {
-//
-//                _progress.value = View.GONE
-//                showErrorToast.value = Event(true)
-//            })
     }
 }

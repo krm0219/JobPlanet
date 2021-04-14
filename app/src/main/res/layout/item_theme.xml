@@ -11,38 +11,37 @@
     </data>
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/color_1a000000">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@color/white">
 
             <ImageView
                 android:id="@+id/img_item_theme_cover"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 app:imageUrl="@{theme.coverImage}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@color/black" />
 
             <TextView
-                android:id="@+id/text_item_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:id="@+id/text_item_theme_name"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
                 android:gravity="center"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="24dp"
                 android:text="@{theme.title}"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/img_item_theme_cover"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_item_theme_cover"
-                tools:text="개발이\n적성이라면" />
+                tools:text="이번주 꼭 지원해야 할 회사" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 </layout>

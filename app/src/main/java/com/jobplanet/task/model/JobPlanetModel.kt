@@ -1,6 +1,7 @@
 package com.jobplanet.task.model
 
 import com.google.gson.annotations.SerializedName
+import java.text.DecimalFormat
 
 data class ItemsModel(
     @SerializedName("total_count") val totalCount: Int,
@@ -21,7 +22,14 @@ data class JobPlanetModel(
     @SerializedName("themes") val themes: ArrayList<ThemeModel>?,
     @SerializedName("pros") val pros: String?,
     @SerializedName("cons") val cons: String?
-)
+) {
+
+    fun decimalFormat(salary: Int) : String {
+
+        val decimalFormat = DecimalFormat("#,###")
+        return decimalFormat.format(salary)
+    }
+}
 
 
 data class CompanyModel(

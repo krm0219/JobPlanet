@@ -9,13 +9,13 @@ object RetrofitService {
 
     private const val URL = "https://jpassets.jobplanet.co.kr/mobile-config/"
 
-    private fun getClient(baseUrl: String): Retrofit = Retrofit.Builder()
-        .baseUrl(baseUrl)
+    private fun getClient(url: String): Retrofit = Retrofit.Builder()
+        .baseUrl(url)
         .client(OkHttpClient())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
 
-    val client = getClient(URL).create(RetrofitAPI::class.java)
+    val client: RetrofitAPI = getClient(URL).create(RetrofitAPI::class.java)
 }

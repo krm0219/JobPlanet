@@ -1,6 +1,5 @@
 package com.jobplanet.task.main
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +28,6 @@ class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(R
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
 
-        Log.e("krm0219", "onCreateViewHolder  $viewType")
         when (viewType) {
 
             TYPE_COMPANY -> {
@@ -98,6 +96,12 @@ class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(R
     inner class ThemeViewHolder(private val binding: ItemHorizontalBinding) : BaseViewHolder<JobPlanetModel>(binding.root) {
         override fun bind(item: JobPlanetModel) {
 
+            val adapter = ThemeAdapter()
+
+            binding.recyclerHorizontal.adapter = adapter
+            binding.recyclerHorizontal.setHasFixedSize(true)
+
+
             binding.horizontal = item
             binding.executePendingBindings()
         }
@@ -114,7 +118,6 @@ class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(R
     companion object RepoDiffUtil : DiffUtil.ItemCallback<JobPlanetModel>() {
         override fun areItemsTheSame(oldItem: JobPlanetModel, newItem: JobPlanetModel): Boolean {
 
-            // 각 아이템들의 고유한 값을 비
             return oldItem == newItem
         }
 

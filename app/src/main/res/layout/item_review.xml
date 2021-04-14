@@ -49,6 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{review.name}"
+                        android:textColor="@color/color_303030"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="삼양발브종합메이커(주)" />
@@ -66,7 +67,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/border_round_10_929292"
+                            android:background="@drawable/border_round_20_e2e2e2"
                             android:orientation="horizontal"
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="2dp">
@@ -90,9 +91,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
+                            android:layout_marginStart="8dp"
                             android:text="@{review.industryName}"
-                            android:textColor="@color/black"
+                            android:textColor="@color/color_929292"
                             android:textSize="16sp"
                             tools:text="제조/화학" />
                     </LinearLayout>
@@ -103,8 +104,8 @@
                 android:id="@+id/view_item_review_top"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/color_929292"
+                android:layout_marginTop="16dp"
+                android:background="@color/color_e2e2e2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout_item_review_top" />
@@ -113,10 +114,11 @@
                 android:id="@+id/text_item_review_review_summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="@{review.reviewSummary}"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_item_review_top"
@@ -127,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="장점"
+                android:text="@string/text_pros"
                 android:textColor="#4fb648"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,14 +137,15 @@
 
             <TextView
                 android:id="@+id/text_item_review_pros"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:text="@{review.pros}"
-                android:textColor="@color/black"
+                android:textColor="@color/color_707070"
                 android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/text_item_review_pros_title"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/text_item_review_pros_title"
                 app:layout_constraintTop_toBottomOf="@id/text_item_review_review_summary"
                 tools:text="페이가 강하고 비젼도 강한편이다. 글로번 설장 가능성도 높은 편이며 안정성도 높다." />
@@ -152,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="단점"
+                android:text="@string/text_cons"
                 android:textColor="#ff0000"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -160,14 +163,15 @@
 
             <TextView
                 android:id="@+id/text_item_review_cons"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:text="@{review.cons}"
-                android:textColor="@color/black"
+                android:textColor="@color/color_707070"
                 android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/text_item_review_cons_title"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/text_item_review_cons_title"
                 app:layout_constraintTop_toBottomOf="@id/text_item_review_pros"
                 tools:text="문과생의 경우 비젼을 제시 하지 못하거나 받지 못하는 경우, 방황할 수 있다." />

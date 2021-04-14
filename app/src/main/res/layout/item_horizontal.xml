@@ -19,9 +19,11 @@
             android:id="@+id/recycler_main_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:overScrollMode="never"
             android:orientation="horizontal"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:themesData="@{horizontal.themes}"
             tools:listitem="@layout/item_theme" />
+        <!--  app:themesData="@{horizontal.themes}"-->
     </FrameLayout>
 </layout>

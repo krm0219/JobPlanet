@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setRecyclerView() {
 
-        val adapter = MainAdapter()
+        val adapter = MainAdapter(viewModel)
 
         binding.recyclerMainList.adapter = adapter
         binding.recyclerMainList.setHasFixedSize(true)

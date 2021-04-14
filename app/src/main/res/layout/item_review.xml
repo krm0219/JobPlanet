@@ -8,6 +8,10 @@
         <variable
             name="review"
             type="com.jobplanet.task.model.JobPlanetModel" />
+
+        <variable
+            name="viewModel"
+            type="com.jobplanet.task.main.MainViewModel" />
     </data>
 
     <FrameLayout
@@ -20,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@color/white"
+            android:onClick="@{()->viewModel.onClickReview(review)}"
             android:padding="16dp">
 
             <RelativeLayout

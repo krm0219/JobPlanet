@@ -13,7 +13,7 @@ import com.jobplanet.task.databinding.ItemHorizontalBinding
 import com.jobplanet.task.databinding.ItemReviewBinding
 import com.jobplanet.task.model.JobPlanetModel
 
-class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(RepoDiffUtil) {
+class MainAdapter(private val viewModel: MainViewModel) : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(RepoDiffUtil) {
 
     val TYPE_COMPANY = 0
     val TYPE_THEME = 1
@@ -23,7 +23,7 @@ class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(R
 
 
     abstract class BaseViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        abstract fun bind(item: T)
+        abstract fun bind(viewModel: MainViewModel, item: T)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
@@ -62,9 +62,9 @@ class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(R
 
         when (holder) {
 
-            is CompanyViewHolder -> holder.bind(data)
-            is ThemeViewHolder -> holder.bind(data)
-            is ReviewViewHolder -> holder.bind(data)
+            is CompanyViewHolder -> holder.bind(viewModel, data)
+            is ThemeViewHolder -> holder.bind(viewModel, data)
+            is ReviewViewHolder -> holder.bind(viewModel, data)
             else -> throw java.lang.IllegalArgumentException()
         }
     }
@@ -86,15 +86,16 @@ class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(R
     }
 
     inner class CompanyViewHolder(private val binding: ItemCompanyBinding) : BaseViewHolder<JobPlanetModel>(binding.root) {
-        override fun bind(item: JobPlanetModel) {
+        override fun bind(viewModel: MainViewModel, item: JobPlanetModel) {
 
             binding.company = item
+            binding.viewModel = viewModel
             binding.executePendingBindings()
         }
     }
 
     inner class ThemeViewHolder(private val binding: ItemHorizontalBinding) : BaseViewHolder<JobPlanetModel>(binding.root) {
-        override fun bind(item: JobPlanetModel) {
+        override fun bind(viewModel: MainViewModel, item: JobPlanetModel) {
 
             val adapter = ThemeAdapter()
 
@@ -108,9 +109,10 @@ class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(R
     }
 
     inner class ReviewViewHolder(private val binding: ItemReviewBinding) : BaseViewHolder<JobPlanetModel>(binding.root) {
-        override fun bind(item: JobPlanetModel) {
+        override fun bind(viewModel: MainViewModel, item: JobPlanetModel) {
 
             binding.review = item
+            binding.viewModel = viewModel
             binding.executePendingBindings()
         }
     }

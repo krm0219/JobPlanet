@@ -1,5 +1,6 @@
 package com.jobplanet.task.main
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,10 +19,13 @@ class MainViewModel : ViewModel() {
     val progress: MutableLiveData<Int>
         get() = _progress
 
-
     private val _showErrorToast = MutableLiveData<Event<Boolean>>()
     val showErrorToast: MutableLiveData<Event<Boolean>>
         get() = _showErrorToast
+
+
+    // TODO Item Click Event
+
 
     init {
 
@@ -43,5 +47,16 @@ class MainViewModel : ViewModel() {
                 _progress.value = View.GONE
                 showErrorToast.value = Event(true)
             })
+    }
+
+
+    fun onClickCompany(item: JobPlanetModel) {
+
+        Log.e("Company", "HERE onClickCompany")
+    }
+
+    fun onClickReview(item: JobPlanetModel) {
+
+        Log.e("Review", "HERE onClickReview")
     }
 }

@@ -24,7 +24,7 @@ data class JobPlanetModel(
     @SerializedName("cons") val cons: String?
 ) {
 
-    fun decimalFormat(salary: Int) : String {
+    fun decimalFormat(salary: Int): String {
 
         val decimalFormat = DecimalFormat("#,###")
         return decimalFormat.format(salary)

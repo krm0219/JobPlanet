@@ -20,10 +20,10 @@ object BindingAdapter {
 
     @BindingAdapter("imageUrl")
     @JvmStatic
-    fun loadImage(imageView: ImageView, url: String) {
+    fun loadImage(imageView: ImageView, url: String?) {
 
-        Glide.with(imageView.context).load(url)
-            .error(R.drawable.ic_launcher_background)
-            .into(imageView)
+//        Glide.with(imageView.context).load(url)
+//            .error(R.drawable.ic_launcher_background)
+//            .into(imageView)
     }
 }

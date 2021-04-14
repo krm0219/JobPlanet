@@ -8,7 +8,7 @@ data class ItemsModel(
 )
 
 data class JobPlanetModel(
-    @SerializedName("cell_type") val cellType: String?,
+    @SerializedName("cell_type") val cellType: String,
     @SerializedName("name") val name: String?,
     @SerializedName("salary_avg") val salaryAvg: Int?,
     @SerializedName("logo_path") val logoPath: String?,

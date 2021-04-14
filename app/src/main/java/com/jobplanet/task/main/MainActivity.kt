@@ -1,12 +1,12 @@
-package com.jobplanet.task
+package com.jobplanet.task.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import com.jobplanet.task.R
 import com.jobplanet.task.databinding.ActivityMainBinding
-import com.jobplanet.task.main.MainViewModel
-import com.jobplanet.task.main.MainAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,9 +15,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     //   setContentView(R.layout.activity_main)
+        //   setContentView(R.layout.activity_main)
 
-        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -32,12 +32,11 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerMainList.adapter = adapter
         binding.recyclerMainList.setHasFixedSize(true)
 
-//        viewModel.githubRepositories.observe(this, Observer {
-//
-//            adapter.setData(it)
-//        })
-    }
+        viewModel.jobs.observe(this, Observer {
 
+            adapter.setData(it)
+        })
+    }
 
 
     /*

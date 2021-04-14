@@ -75,14 +75,14 @@
                                 android:layout_width="16dp"
                                 android:layout_height="16dp"
                                 android:layout_gravity="center_vertical"
-                                android:background="@drawable/ic_launcher_background" />
+                                android:background="@drawable/icon_star" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:text="@{String.valueOf(review.rateTotalAvg)}"
-                                android:textColor="@color/black"
+                                android:textColor="@color/color_ffc107"
                                 android:textSize="16sp"
                                 tools:text="1.0" />
                         </LinearLayout>
@@ -93,7 +93,7 @@
                             android:layout_marginStart="12dp"
                             android:text="@{review.industryName}"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             tools:text="제조/화학" />
                     </LinearLayout>
                 </LinearLayout>
@@ -116,7 +116,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@{review.reviewSummary}"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_item_review_top"
@@ -129,7 +129,7 @@
                 android:layout_marginTop="24dp"
                 android:text="장점"
                 android:textColor="#4fb648"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_item_review_review_summary" />
 
@@ -141,7 +141,7 @@
                 android:layout_marginTop="24dp"
                 android:text="@{review.pros}"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/text_item_review_pros_title"
                 app:layout_constraintStart_toEndOf="@id/text_item_review_pros_title"
                 app:layout_constraintTop_toBottomOf="@id/text_item_review_review_summary"
@@ -154,7 +154,7 @@
                 android:layout_marginTop="20dp"
                 android:text="단점"
                 android:textColor="#ff0000"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_item_review_pros" />
 
@@ -166,7 +166,7 @@
                 android:layout_marginTop="24dp"
                 android:text="@{review.cons}"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/text_item_review_cons_title"
                 app:layout_constraintStart_toEndOf="@id/text_item_review_cons_title"
                 app:layout_constraintTop_toBottomOf="@id/text_item_review_pros"

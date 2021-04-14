@@ -14,50 +14,20 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp"
         tools:context=".main.MainActivity">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_main_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_round_10_303030"
-            android:onClick="@{()->viewModel.clickSearch()}"
-            android:text="@string/text_search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/edit_main_keyword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:hint="@string/msg_input_keyword"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:maxLines="1"
-            app:layout_constraintBottom_toBottomOf="@id/btn_main_search"
-            app:layout_constraintEnd_toStartOf="@id/btn_main_search"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btn_main_search"
-            android:layout_marginRight="8dp" />
-
-ta
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_main_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_main_keyword"
-            app:layout_constraintVertical_bias="0.157"
-            app:listData="@{viewModel.datas}"
-            tools:listitem="@layout/item_github" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:listData="@{viewModel.jobs}"
+            tools:listitem="@layout/item_company" />
 
         <ProgressBar
             android:id="@+id/progress_main"

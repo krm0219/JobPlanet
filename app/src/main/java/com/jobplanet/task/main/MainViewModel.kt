@@ -12,8 +12,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainViewModel : ViewModel() {
 
-    private val _datas = MutableLiveData<List<JobPlanetModel>>()
-    val datas = _datas
+    private val _jobs = MutableLiveData<List<JobPlanetModel>>()
+    val jobs = _jobs
 
     private val _progress = MutableLiveData<Int>()
     val progress: MutableLiveData<Int>
@@ -39,22 +39,21 @@ class MainViewModel : ViewModel() {
         _progress.value = View.GONE
     }
 
-    fun getData() {
+
+    private fun getData() {
 
         RetrofitService.client.getTestData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
+                for (i in it.items.indices) {
 
-                Log.e("krm0219", "data ${it.items.get(0).cellType}")
+                    Log.e("krm0219", "DATA ${it.items[i].cellType}")
+                }
 
                 _progress.value = View.GONE
-                _datas.postValue(it.items)
-
-
-
-
+                _jobs.postValue(it.items)
             }, {
 
                 _progress.value = View.GONE

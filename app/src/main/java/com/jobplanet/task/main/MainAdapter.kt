@@ -1,47 +1,112 @@
 package com.jobplanet.task.main
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jobplanet.task.R
-import com.jobplanet.task.databinding.ItemGithubBinding
+import com.jobplanet.task.databinding.ItemCompanyBinding
+import com.jobplanet.task.databinding.ItemHorizontalBinding
+import com.jobplanet.task.databinding.ItemReviewBinding
 import com.jobplanet.task.model.JobPlanetModel
 
-class MainAdapter() : ListAdapter<JobPlanetModel, MainAdapter.ViewHolder>(RepoDiffUtil) {
+class MainAdapter : ListAdapter<JobPlanetModel, MainAdapter.BaseViewHolder<*>>(RepoDiffUtil) {
 
-    var repositories: List<JobPlanetModel> = listOf()
+    val TYPE_COMPANY = 0
+    val TYPE_THEME = 1
+    val TYPE_REVIEW = 2
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    var jobs: List<JobPlanetModel> = listOf()
 
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<ItemGithubBinding>(layoutInflater, viewType, parent, false)
-        return ViewHolder(binding);
+
+    abstract class BaseViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        abstract fun bind(item: T)
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
+
+        Log.e("krm0219", "onCreateViewHolder  $viewType")
+        when (viewType) {
+
+            TYPE_COMPANY -> {
+
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = DataBindingUtil.inflate<ItemCompanyBinding>(layoutInflater, R.layout.item_company, parent, false)
+                return CompanyViewHolder(binding)
+            }
+
+            TYPE_THEME -> {
+
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = DataBindingUtil.inflate<ItemHorizontalBinding>(layoutInflater, R.layout.item_horizontal, parent, false)
+                return ThemeViewHolder(binding)
+            }
+
+            TYPE_REVIEW -> {
+
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = DataBindingUtil.inflate<ItemReviewBinding>(layoutInflater, R.layout.item_review, parent, false)
+                return ReviewViewHolder(binding)
+            }
+
+            else -> throw IllegalArgumentException("Invalid view type")
+        }
+    }
+
+
+    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
+
+        val data = jobs[position]
+
+        when (holder) {
+
+            is CompanyViewHolder -> holder.bind(data)
+            is ThemeViewHolder -> holder.bind(data)
+            is ReviewViewHolder -> holder.bind(data)
+            else -> throw java.lang.IllegalArgumentException()
+        }
+    }
+
 
     override fun getItemViewType(position: Int): Int {
 
-        return R.layout.item_github
+        return when (jobs[position].cellType) {
+            "CELL_TYPE_COMPANY" -> TYPE_COMPANY
+            "CELL_TYPE_HORIZONTAL_THEME" -> TYPE_THEME
+            "CELL_TYPE_REVIEW" -> TYPE_REVIEW
+            else -> TYPE_COMPANY
+        }
     }
 
     override fun getItemCount(): Int {
 
-        return repositories.size
+        return jobs.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    inner class CompanyViewHolder(private val binding: ItemCompanyBinding) : BaseViewHolder<JobPlanetModel>(binding.root) {
+        override fun bind(item: JobPlanetModel) {
 
-        val repository = repositories[position]
-        holder.bind(repository)
+            binding.company = item
+            binding.executePendingBindings()
+        }
     }
 
-    inner class ViewHolder(private val binding: ItemGithubBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ThemeViewHolder(private val binding: ItemHorizontalBinding) : BaseViewHolder<JobPlanetModel>(binding.root) {
+        override fun bind(item: JobPlanetModel) {
 
-        fun bind(repository: JobPlanetModel) {
+            binding.horizontal = item
+            binding.executePendingBindings()
+        }
+    }
 
-            binding.repository = repository
+    inner class ReviewViewHolder(private val binding: ItemReviewBinding) : BaseViewHolder<JobPlanetModel>(binding.root) {
+        override fun bind(item: JobPlanetModel) {
+
+            binding.review = item
             binding.executePendingBindings()
         }
     }
@@ -61,7 +126,7 @@ class MainAdapter() : ListAdapter<JobPlanetModel, MainAdapter.ViewHolder>(RepoDi
 
     fun setData(repositories: List<JobPlanetModel>) {
 
-        this.repositories = repositories
+        this.jobs = repositories
         notifyDataSetChanged()
     }
 }

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.jobplanet.task.main.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:padding="16dp"
+        tools:context=".main.DetailActivity">
+
+        <RelativeLayout
+            android:id="@+id/layout_item_company_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_item_company_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:imageUrl="@{viewModel.item.logoPath}"
+                tools:src="@drawable/border_rect_303030" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/img_item_company_logo"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_item_company_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.item.name}"
+                    android:textColor="@color/color_303030"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="삼양발브종합메이커(주)" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/text_item_company_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_company_name">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_round_20_e2e2e2"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/icon_star" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="@{String.valueOf(viewModel.item.rateTotalAvg)}"
+                            android:textColor="@color/color_ffc107"
+                            android:textSize="16sp"
+                            tools:text="1.0" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@{viewModel.item.industryName}"
+                        android:textColor="@color/color_929292"
+                        android:textSize="16sp"
+                        tools:text="제조/화학" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_item_company_top"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/color_e2e2e2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_item_company_top" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_item_company_top">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_detail_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/text_item_company_review_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.item.reviewSummary}"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="경영진이 가족경영이라 그런지 가족이 잘 사는 회사지 직원이 잘 사는 회사가 아니며 복지가 아예없는 수준과 낮은 급여" />
+
+                <TextView
+                    android:id="@+id/text_item_company_salary_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/text_salary_avg"
+                    android:textColor="@color/color_4fb648"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_company_review_summary" />
+
+                <TextView
+                    android:id="@+id/text_item_company_salary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@{viewModel.item.decimalFormat(viewModel.item.salaryAvg)}"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@id/text_item_company_salary_title"
+                    app:layout_constraintStart_toEndOf="@id/text_item_company_salary_title"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_company_review_summary"
+                    tools:text="2,389" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/text_currency"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/text_item_company_salary_title"
+                    app:layout_constraintStart_toEndOf="@id/text_item_company_salary"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_company_review_summary" />
+
+                <TextView
+                    android:id="@+id/text_item_company_interview_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/text_interview_question"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_company_salary_title" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.item.interviewQuestion}"
+                    android:textColor="@color/color_707070"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_company_interview_title"
+                    tools:text="처음일차는 개별 이차는 다대일보고 최종합격 다대일의 경우 경영진이 들어오고 처음 일차는 팀장들 들어옴" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_detail_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/text_item_review_review_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{viewModel.item.reviewSummary}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="경영진이 가족경영이라 그런지 가족이 잘 사는 회사지 직원이 잘 사는 회사가 아니며 복지가 아예없는 수준과 낮은 급여" />
+
+                <TextView
+                    android:id="@+id/text_item_review_pros_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/text_pros"
+                    android:textColor="#4fb648"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_review_review_summary" />
+
+                <TextView
+                    android:id="@+id/text_item_review_pros"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@{viewModel.item.pros}"
+                    android:textColor="@color/color_707070"
+                    android:textSize="16sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/text_item_review_pros_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/text_item_review_pros_title"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_review_review_summary"
+                    tools:text="페이가 강하고 비젼도 강한편이다. 글로번 설장 가능성도 높은 편이며 안정성도 높다." />
+
+                <TextView
+                    android:id="@+id/text_item_review_cons_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/text_cons"
+                    android:textColor="#ff0000"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_review_pros" />
+
+                <TextView
+                    android:id="@+id/text_item_review_cons"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@{viewModel.item.cons}"
+                    android:textColor="@color/color_707070"
+                    android:textSize="16sp"
+                    app:layout_constraintBaseline_toBaselineOf="@id/text_item_review_cons_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/text_item_review_cons_title"
+                    app:layout_constraintTop_toBottomOf="@id/text_item_review_pros"
+                    tools:text="문과생의 경우 비젼을 제시 하지 못하거나 받지 못하는 경우, 방황할 수 있다." />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

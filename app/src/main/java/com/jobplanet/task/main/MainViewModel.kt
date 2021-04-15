@@ -24,7 +24,9 @@ class MainViewModel : ViewModel() {
         get() = _showErrorToast
 
 
-    // TODO Item Click Event
+    private val _item = MutableLiveData<JobPlanetModel>()
+    val item: MutableLiveData<JobPlanetModel>
+        get() = _item
 
 
     init {
@@ -53,10 +55,12 @@ class MainViewModel : ViewModel() {
     fun onClickCompany(item: JobPlanetModel) {
 
         Log.e("Company", "HERE onClickCompany")
+        _item.value = item
     }
 
     fun onClickReview(item: JobPlanetModel) {
 
         Log.e("Review", "HERE onClickReview")
+        _item.value = item
     }
 }

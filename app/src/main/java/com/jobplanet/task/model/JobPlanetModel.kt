@@ -1,6 +1,7 @@
 package com.jobplanet.task.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.text.DecimalFormat
 
 data class ItemsModel(
@@ -22,7 +23,7 @@ data class JobPlanetModel(
     @SerializedName("themes") val themes: ArrayList<ThemeModel>?,
     @SerializedName("pros") val pros: String?,
     @SerializedName("cons") val cons: String?
-) {
+) : Serializable {
 
     fun decimalFormat(salary: Int): String {
 
@@ -42,19 +43,19 @@ data class CompanyModel(
     @SerializedName("rate_total_avg") val rateTotalAvg: Double,
     @SerializedName("review_summary") val reviewSummary: String,
     @SerializedName("industry_name") val industryName: String
-)
+) : Serializable
 
 data class HorizontalThemeModel(
     @SerializedName("cell_type") val cellType: String,
     @SerializedName("count") val count: Int,
     @SerializedName("themes") val themes: ArrayList<ThemeModel>
-)
+) : Serializable
 
 data class ThemeModel(
     @SerializedName("cover_image") val coverImage: String,
     @SerializedName("id") val id: String,
     @SerializedName("title") val title: String
-)
+) : Serializable
 
 data class ReviewModel(
     @SerializedName("cell_type") val cellType: String,
@@ -66,4 +67,4 @@ data class ReviewModel(
     @SerializedName("rate_total_avg") val rateTotalAvg: Double,
     @SerializedName("review_summary") val reviewSummary: String,
     @SerializedName("industry_name") val industryName: String
-)
+) : Serializable

@@ -1,5 +1,6 @@
 package com.jobplanet.task.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -30,6 +31,14 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, R.string.msg_error, Toast.LENGTH_SHORT).show()
             }
         })
+
+        viewModel.item.observe(this, Observer {
+
+            val intent = Intent(this@MainActivity, DetailActivity::class.java)
+            intent.putExtra("item", it)
+            startActivity(intent)
+        })
+
 
         setRecyclerView()
     }
